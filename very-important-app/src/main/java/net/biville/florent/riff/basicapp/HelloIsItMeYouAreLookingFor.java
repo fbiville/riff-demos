@@ -10,12 +10,16 @@ public class HelloIsItMeYouAreLookingFor {
 
     private final String podName;
 
-    public HelloIsItMeYouAreLookingFor(@Value("${env.pod.name}") String podName) {
+    public HelloIsItMeYouAreLookingFor(@Value("${env.pod.name}")
+                                       String podName) {
         this.podName = podName;
     }
 
     @GetMapping("/hello")
-    public String sayWhat(@RequestParam("who") String who) {
-        return String.format("Hello from %s, %s!", podName, who);
+    public String sayWhat(@RequestParam("who")
+                          String who) {
+        return String.format(
+                "Hello from %s, %s!",
+                podName, who);
     }
 }

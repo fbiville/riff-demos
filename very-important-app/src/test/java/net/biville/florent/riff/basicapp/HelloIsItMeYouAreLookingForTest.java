@@ -22,10 +22,14 @@ public class HelloIsItMeYouAreLookingForTest {
 
     @Test
     public void is_polite() throws Exception {
+        String resultingContent =
+                "Hello from test-pod, Pivotal Paris Day!";
         mockMvc.perform(
-                get("/hello")
-                        .param("who", "Pivotal Paris Day"))
+                get("/hello").param(
+                        "who",
+                        "Pivotal Paris Day"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Hello from test-pod, Pivotal Paris Day!"));
+                .andExpect(content()
+                        .string(resultingContent));
     }
 }
