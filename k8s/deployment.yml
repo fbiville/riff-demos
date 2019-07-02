@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-app-deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: hello-app
+  template:
+    metadata:
+      name: hello-app-pod
+      labels:
+        app: hello-app
+    spec:
+      containers:
+        - name: hello-app-container
+          image: fbiville/hello-app
+          env:
+            - name: ENV_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
