@@ -45,7 +45,7 @@ We need services instead!
  $ kubectl apply -f k8s
  $ curl -w'\n' 'http://localhost:30808/hello?who=Pivotal%20Paris'
 ```
-```
+
 Let's clean up:
 ```
  $ kubectl delete pod --all
@@ -54,7 +54,7 @@ Let's clean up:
 
 #### Deployment
 
-Just showing off ReplicaSet capabilities here:
+Just showing off `ReplicaSet` capabilities here:
 
 ```
 $ kubectl apply -f deployment.yml
