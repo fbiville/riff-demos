@@ -80,3 +80,32 @@ Let's scale down:
 ```
 $ kubectl scale --replicas=2 deployment.extensions/hello-app-deployment
 ```
+
+## riff
+
+### Build
+
+```
+$ kubectl config use-context gke_cf-spring-funkytown_europe-west4-a_florent-knative
+$ riff credentials apply dockerhub --docker-hub fbiville --set-default-image-prefix
+$ riff function create hello \
+	--image fbiville/node-hello-pivotal-paris \
+	--git-repo https://github.com/projectriff-samples/node-hello \
+	--artifact hello.js \
+	--tail
+```
+
+### Invoke (request-reply)
+
+```
+$ riff handler create hello-handler \
+	--function-ref hello \
+	--tail
+$ riff handler invoke hello-handler \
+	--text -- \
+	--write-out '\n' \
+	--data "Pivotal Paris Day"
+```
+
+
+
